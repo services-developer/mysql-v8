@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-v8
+    environment:
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'user'
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'default'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - ./logs:/var/log/mysql
+      - ./data:/var/lib/mysql
+      - ./configs:/etc/mysql/conf.d
+    networks:
+      - default
+
+networks:
+  default:
+    name: mysql
+
